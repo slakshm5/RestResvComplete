@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meal Ticket</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" type="text/css" href="styles/lib/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" type="text/css" href="styles/lib/bootstrap-theme.min.css">
+
+    <!-- [if lt IE 9]>
+    <script src="http://html5shiv.google.com/svn/trunk/html5.js">
+    </script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="nav">
+    <div class="navleft">
+        <a href="#"><img src="images/ticket-stub.jpg" alt="Meal Ticket icon">Meal Ticket</a>
+    </div>
+    <div class="navright">
+        <ul>
+            <li><a href="OwnerLogin.html"><i class="glyphicon glyphicon-log-in">Owner Log In</i></a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div id="details">
+        <h5><span class="heading">Restaurant Hours</span></h5>
+        <label class="hours">Monday to Thursday: 9 am to 10pm</label>
+        <label class="hours">Friday, Saturday: 9 am to 11.30pm</label>
+        <label class="hours">Sunday: 11 am to 9pm</label>
+        <label class="hours">Phone: (999)123-4567</label>
+    </div>
+    <div class="formrow">
+        <form action = "#" method="post">
+            <h4><span class="heading"> Reserve a Table</span></h4>
+            <div class="form-group">
+
+                <div class="form-group">
+                    <label for="date" class="control-label">Date:</label>
+                    <input type="date" id="date" class="form-control" placeholder="date" autofocus="autofocus">
+                </div>
+                <div class="form-group">
+                    <label for="time" class="control-label">Time:</label>
+                    <input type="time" id="time" class="form-control" placeholder="time">
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="control-label">Name:</label>
+                    <input type="text" id="name" class="form-control" placeholder="Name" required autocomplete="on">
+                </div>
+                <div class="form-group">
+                    <label for="party" class="control-label">Party size:</label>
+                    <input type="number" id="party" class="form-control" placeholder="1">
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="control-label">Phone number:</label>
+                    <input type="tel" id="phone" class="form-control" placeholder="9999999999" autocomplete="on">
+                </div>
+                <div class="form-group">
+                    <label for="email" class="control-label">Email:</label>
+                    <input type="email" id="email" class="form-control" placeholder="email@domain.com" required autocomplete="on">
+                </div>
+                <button type="submit" class="btn btn-default" display="block">Request Reservation</button>
+                <a href="ModifyReservation.html" alt="Modify your existing reservation">Modify Existing Reservation</a>
+            </div>
+        </form>
+    </div>
+    <div class="formrow">
+        <h4><span class="heading">Map Directions</span></h4>
+        <div id="map-canvas"></div>
+    </div>
+
+
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script type="text/javascript" src="scripts/script.js"></script>
+<script type="text/javascript" src="scripts/controllers/MainController.js"></script>
+<script type="text/javascript" src=https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+</body>
+</html>

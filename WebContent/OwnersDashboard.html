@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dashboard">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Meal Ticket &middot; Dashboard</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" type="text/css" href="styles/lib/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+</head>
+<body>
+
+<div class="nav">
+    <div class="navleft">
+        <a href="#"><img src="images/ticket-stub.jpg" alt="Meal Ticket icon">Meal Ticket</a>
+    </div>
+    <div class="navright">
+        <ul>
+            <li><a href="#"><i class="glyphicon glyphicon-user"></i>Profile</a></li>
+            <li><a href="OwnerLogin.html"><i class="glyphicon glyphicon-log-out"></i>Logout</a></li>
+        </ul>
+    </div>
+</div>
+<div id="tabbedpane">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a data-toggle="tab" href="#reservations">
+            <h4><span class="heading1">Reservations</span></h4></a></li>
+        <li><a data-toggle="tab" href="#tables"><h4><span class="heading1">Tables</span></h4></a></li>
+        <li><a data-toggle="tab" href="#settings"><h4><span class="heading1">Settings</span></h4></a></li>
+        <li><a data-toggle="tab" href="#contacts"><h4><span class="heading1">Contacts</span></h4></a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="reservations" class="container" ng-controller="ReservationsController as rsvnVm" class="tab-pane fade in active">
+        <div class="row">
+        	<div class="col-md-4">
+        	    <form ng-submit="rsvnVm.addRsvn()">
+		            <h4><span class="heading"> Reserve a Table</span></h4>
+		            <div class="form-group">
+	
+	                <div class="form-group">
+	                    <label for="date" class="control-label">Date:</label>
+	                    <input type="date" id="date" class="form-control" placeholder="date" autofocus="autofocus" ng-model="rsvnVm.newCustomer.date">
+	                </div>
+	                <div class="form-group">
+	                    <label for="time" class="control-label">Time:</label>
+	                    <input type="time" id="time" class="form-control" placeholder="time" ng-model="rsvnVm.newCustomer.time">
+	                </div>
+	
+	                <div class="form-group">
+	                    <label for="name" class="control-label">Name:</label>
+	                    <input type="text" id="name" class="form-control" placeholder="Name" required autocomplete="on" ng-model="rsvnVm.newCustomer.name>
+	                </div>
+	                <div class="form-group">
+	                    <label for="party" class="control-label">Party size:</label>
+	                    <input type="number" id="party" class="form-control" placeholder="1" ng-model="rsvnVm.newCustomer.partySize">
+	                </div>
+	                <div class="form-group">
+	                    <label for="phone" class="control-label">Phone number:</label>
+	                    <input type="tel" id="phone" class="form-control" placeholder="9999999999" autocomplete="on" ng-model="rsvnVm.newCustomer.phone">
+	                </div>
+	                <div class="form-group">
+	                    <label for="email" class="control-label">Email:</label>
+	                    <input type="email" id="email" class="form-control" placeholder="email@domain.com" required autocomplete="on" ng-model="rsvnVm.newCustomer.email">
+	                </div>
+	                <button type="submit" class="btn btn-default" display="block">Request Reservation</button>
+	            </div>
+	        </form>
+        	</div>
+        
+        <div class="col-md-8">
+        <input type="search" class="form-control" ng-model="rsvnVm.searchText" placeholder="Search Here.."/>
+            <table id="rsvnTable" class="table table-striped" >
+                <thead>
+                <tr>
+                    <th>Confirmation #</th>
+                    <th>Name</th>
+                    <th>Reservation Status</th>
+                    <th>Reservation Date & Time</th>
+                    <th>Party Size</th>
+                    <th>Table#</th>
+                    <th>Save Changes</th>
+                    <th>Delete Reservation</th>
+                    <th>Contact</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="c in rsvnVm.customers | filter:rsvnVm.searchText">
+                    <td contenteditable="true">{{c.conf}}</td>
+                    <td contenteditable="true">{{c.name}}</td>
+                    <td contenteditable="true">{{c.status}}</td>
+                    <td contenteditable="true">{{c.date}}{{c.time}}</td>
+                    <td contenteditable="true">{{c.partySize}}</td>
+                    <td contenteditable="true">{{c.table}}</td>
+                    <td><input type="button" class="btn btn-default" ng-click="rsvnVm.saveFn()" value="Save">
+                        <input type="button" class="btn btn-default" value="Cancel"></td>
+                    <td><span class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="rsvnVm.deleteRsvn($index)"></span></td>
+                    <td><input type="button" class="btn btn-default" value="Send email"></td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+
+        <div id="tables" class="tab-pane fade">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Table #</th>
+                    <th>Name</th>
+                    <th>Reservation Status</th>
+                    <th>Reservation Date Time</th>
+                    <th>Party Size</th>
+                    <th>Confirmation number</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>-</td>
+                    <td>Available</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Lawrence</td>
+                    <td>Reserved</td>
+                    <td>10/22/2015 1:30PM</td>
+                    <td>4</td>
+                    <td>RAND323</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>-</td>
+                    <td>Available</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>-</td>
+                    <td>Available</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Mr. Fishburne</td>
+                    <td>Reserved</td>
+                    <td>10/22/2015 1:30PM</td>
+                    <td>3</td>
+                    <td>RAND345</td>
+                </tr>
+                </tbody>
+                </table>
+        </div>
+
+        <div id="settings" class="tab-pane fade">
+            <h4><span class="heading">Account Details</span></h4>
+            <table class="table table-striped">
+                <tr>
+                    <th>Email:</th>
+                    <td contenteditable="true">abc@domain.com</td>
+                </tr>
+                <tr>
+                    <th>Password</th>
+                    <td contenteditable="true">pass</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox">Receive notifications</td>
+                </tr>
+                <tr>
+                    <td><input type="button" class="btn btn-default" value="Update"></td>
+                    <td><input type="button" class="btn btn-default" value="Cancel"></td>
+                </tr>
+
+            </table>
+            <h4><span class="heading">Personal Details</span></h4>
+            <table class="table table-striped">
+                <tr>
+                    <th>Name:</th>
+                    <td contenteditable="true">Narasimha</td>
+                </tr>
+                <tr>
+                    <th>Restaurant phone number:</th>
+                    <td contenteditable="true">(999)999-9999</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="contacts" class="tab-pane fade">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone number</th>
+                    <th>Email</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Lawrence</td>
+                    <td>(237)428-4484</td>
+                    <td>llaw@gmail.com</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</body>
+<script type="text/javascript" src="scripts/lib/bootstrap.min.js"></script>
+<script type="text/javascript" src="scripts/script.js"></script>
+<script type="text/javascript" src="scripts/controllers/dashboard.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+</body>
+</html>
