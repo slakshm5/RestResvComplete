@@ -19,6 +19,32 @@
 			});
 		};
 		
+		self.getCust = fumction(){
+			if(self.Id){
+				$http({
+					method: 'GET',
+					url: 'api/customer/get/'+ self.Id
+				}).success(function(data){
+					console.log(data);
+				}).error(function(data){
+					console.log(data)
+				});
+			}
+		};
+		
+		self.addCust =function(){
+			$http({
+				method: 'POST',
+				url: 'api/customer/add',
+				data: self.newCust
+			}).success(function(data){
+				console.log(data);
+			}).error(function(data){
+					console.log(data)
+			});
+		};
+		
+		
 	}
 	
 })();

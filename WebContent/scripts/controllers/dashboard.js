@@ -3,7 +3,7 @@
 	
 	angular.module('dashboard').controller('ReservationsController', ReservationsControllerFn);
 	
-	function ReservationsController(){
+	function ReservationsController($http){
 		var rsvnVm = this;
 		
 		rsvnVm.addRsvn = function() {
@@ -22,10 +22,11 @@
 			
 		}];
 		
-		function init(){
+		function init($http){
 			$http({
 				method: 'GET',
 				url: 'http://jsonplaceholder.typicode.com/users'
+				//url: 'api/customers/all
 			})
 			.success(function(data){
 				rsvnVm.customers = data;

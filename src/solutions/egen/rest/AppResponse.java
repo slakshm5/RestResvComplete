@@ -4,6 +4,7 @@ public class AppResponse {
 
 	public final static String ERROR = "error";
 	public final static String SUCCESS = "success";
+	public final static String FAILURE = "failure";
 	private String status;
 	private String message;
 	private Object payload;

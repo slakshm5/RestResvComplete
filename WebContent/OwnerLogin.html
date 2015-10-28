@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="login">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,11 +7,9 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" type="text/css" href="styles/lib/bootstrap.min.css">
-    <!-- Optional theme -->
-    <link rel="stylesheet" type="text/css" href="styles/lib/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
-<body>
+<body ng-controller="LoginController as loginVm">
 <div class="nav">
     <div class="navleft">
         <a href="#"><img src="images/ticket-stub.jpg" alt="Meal Ticket icon">Meal Ticket</a>
@@ -24,16 +22,16 @@
 </div>
 
 <div>
-    <div class="formrow">
+    <div class="formrow" ng-submit="loginVm.login()">
         <form class="form-horizontal"  id="loginForm" role="form" method="post" action="#">
             <h4><span class="heading">Login</span></h4></a></li>
             <div class="form-group">
                 <label for="email" class="col-sm-2 control-label">Email:</label>
-                <input type="email" id="email" class="form-control" placeholder="email@domain.com" required="required">
+                <input type="email" id="email" class="form-control" placeholder="email@domain.com" required="required" ng-model="loginVm.auth.username">
             </div>
             <div class="form-group">
                 <label for="password" class="col-sm-2 control-label">Password:</label>
-                <input type="password" id="password" class="form-control" placeholder="password">
+                <input type="password" id="password" class="form-control" placeholder="password" ng-model="loginVm.auth.password">
             </div>
 
             <div class="form-group">
@@ -50,6 +48,7 @@
                 </div>
             </div>
         </form>
+        <p ng-show ="loginVm.loggedIn">LOGGED IN</p>
     </div>
 </div>
 <div class="modal fade" id="mailPwdModal">
@@ -72,5 +71,6 @@
 <script type="text/javascript" src="scripts/lib/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="scripts/lib/bootstrap.min.js"></script>
 <script type="text/javascript" src="scripts/script.js"></script>
+<script type="text/javascript" src="scripts/controller/login.js"></script>
 </body>
 </html>

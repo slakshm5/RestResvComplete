@@ -2,6 +2,7 @@ package solutions.egen.rest;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -69,8 +70,27 @@ public class CustController {
 	
 	@GET
 	@Path("/add")
-	public String addPerson(){
-		return "added";
+	@Consumes("MediaType.APPLICATION_JSON")
+	@Produces("MediaType.APPLICATION_JSON")
+	public AppResponse addPerson(Customer cust){
+		AppResponse resp = new AppResponse();
+		
+		try{
+			CustomerDAO dao = new CustomerDAO();
+			cust = dao.addCustomer(cust);
+
+			resp.setStatus(AppResponse.SUCCESS);
+			
+			
+		   } catch (AppException e) {
+			e.printStackTrace();
+			
+			resp.setStatus(AppResponse.ERROR);
+			resp.setMessage(e.getMessage());
+		}
+		
+		return resp;
+
 	}
 
 }
